@@ -4,18 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Inspección Catenaria</title>
+
+    <!-- 1. VINCULAR EL MANIFIESTO (ANDROID) -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- 2. ICONOS (iOS y Navegadores) -->
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <!-- 3. MODO PANTALLA COMPLETA (iOS) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Catenaria">
+
+    <!-- 4. COLOR DE TEMA (ANDROID) -->
+    <meta name="theme-color" content="#6200EE">
+
     <style>
-        /* Reseteo básico para pantalla completa */
+        /* ESTILOS PARA OCULTAR LA BARRA DE GOOGLE */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             width: 100%;
-            overflow: hidden; /* Evita doble barra de scroll */
-            background-color: #f0f2f5; /* Mismo color de fondo de tu App */
+            overflow: hidden;
+            background-color: #f0f2f5;
+            /* Evita el rebote elástico en iOS */
+            overscroll-behavior: none; 
         }
 
-        /* Contenedor para el truco de ocultar */
         .iframe-container {
             width: 100%;
             height: 100%;
@@ -25,31 +42,17 @@
         iframe {
             width: 100%;
             border: none;
-            
-            /* --- EL TRUCO PARA TAPAR EL MENSAJE --- */
-            /* La barra de Google suele medir unos 25px a 30px */
-            /* Movemos el iframe hacia arriba para cortarle la cabeza */
             position: absolute;
+            /* AJUSTE PARA TAPAR BARRA GRIS GOOGLE */
+            /* Si en tu móvil se ve un poco, ajusta este número a -30px o -35px */
             top: -26px; 
-            
-            /* Compensamos la altura para que llegue abajo del todo */
             height: calc(100% + 26px); 
-        }
-
-        /* En pantallas muy pequeñas a veces Google no muestra la barra,
-           o la muestra abajo. Ajuste opcional para móviles. */
-        @media (max-width: 600px) {
-            iframe {
-                /* Si en tu móvil la barra molesta, ajusta este número */
-                top: -26px; 
-                height: calc(100% + 26px);
-            }
         }
     </style>
 </head>
 <body>
     <div class="iframe-container">
-        <!-- Reemplaza el src con tu URL de /exec -->
+        <!-- ¡¡IMPORTANTE!! PEGA AQUÍ TU URL DE GOOGLE APPS SCRIPT (/exec) -->
         <iframe src="https://script.google.com/macros/s/AKfycbyxipXl5eN8Iy-eKnVWQ6uXi4aJfXzLL4rC8z1hsbM1zJTCY2YPViGeJJIWFg6sapGCpQ/exec" allow="camera; geolocation"></iframe>
     </div>
 </body>
